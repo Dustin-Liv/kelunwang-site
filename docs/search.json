@@ -1,0 +1,163 @@
+[
+  {
+    "objectID": "posts.html",
+    "href": "posts.html",
+    "title": "Posts",
+    "section": "",
+    "text": "Course writing, statistical walkthroughs, and polished analysis posts from MGTA 495. Each piece is meant to read like a finished article, not just a homework submission.\n\n\n\n\n\n\n\n\n\n\nA/B Testing a Call to Action\n\n\nSimulating Key Ideas from Classical Frequentist Statistics\n\n\nA simulation-based walkthrough of A/B testing, uncertainty, and hypothesis testing using a simple homepage CTA experiment.\n\n\n\n\n\nApr 15, 2026\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Projects",
+    "section": "",
+    "text": "A small portfolio of class exercises and website experiments. Some entries are finished analyses, while others track work that is still in progress.\n\n\n\n\n\n\n\n\n\n\n\n\n\nAnalysis of Cars\n\n\nA short exploratory analysis of the relationship between fuel efficiency and engine displacement in the mtcars dataset.\n\n\n\nKelun Wang\n\n\nApr 15, 2026\n\n\n\n\n\n\n\n\n\n\n\nPortfolio Site Refresh\n\n\nAn in-progress project focused on reorganizing this Quarto site, improving navigation, and building a cleaner portfolio experience.\n\n\n\nKelun Wang\n\n\nApr 15, 2026\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "projects/project1/index.html",
+    "href": "projects/project1/index.html",
+    "title": "Analysis of Cars",
+    "section": "",
+    "text": "This mini project explores the relationship between fuel efficiency (mpg) and engine displacement (disp) in the mtcars dataset. The two variables have a correlation of -0.85, which suggests a strong negative association."
+  },
+  {
+    "objectID": "projects/project1/index.html#scatterplot",
+    "href": "projects/project1/index.html#scatterplot",
+    "title": "Analysis of Cars",
+    "section": "Scatterplot",
+    "text": "Scatterplot\n\nlibrary(tidyverse)\ndata(mtcars)\nmtcars |&gt;\n  ggplot(aes(mpg, disp)) +\n  geom_point(color=\"dodgerblue4\", size=2) +\n  labs(\n    title = \"Fuel Efficiency and Engine Displacement Move in Opposite Directions\",\n    x = \"Miles per gallon\",\n    y = \"Engine displacement\"\n  ) +\n  theme_minimal(base_size = 12)\n\n\n\n\n\n\n\n\nCars with larger engines tend to have lower fuel efficiency, which is exactly the pattern we would expect from the plot. This page is intentionally simple, but it serves as a first example of how I want to present analysis on the site."
+  },
+  {
+    "objectID": "resume.html",
+    "href": "resume.html",
+    "title": "Resume",
+    "section": "",
+    "text": "A one-page snapshot of my background, experience, and current coursework. You can view the PDF here, open it in a new tab, or download a copy.\n\n\nOpen PDF Download Resume\n\n\nDownload PDF file."
+  },
+  {
+    "objectID": "posts/hw1/index.html",
+    "href": "posts/hw1/index.html",
+    "title": "A/B Testing a Call to Action",
+    "section": "",
+    "text": "Suppose I run a website with a landing page that invites visitors to join an email newsletter. The page has a prominent call to action, and I want to know whether slightly different wording changes how often visitors actually sign up.\nFor this post I will compare two versions of that CTA. Version A says Sign up for our newsletter here!, while version B says Stay up to date by signing up!. An A/B test assigns visitors at random to see one of the two messages, then compares the sign-up rates across groups. That random assignment is what makes the comparison meaningful: in expectation, the two groups differ only in the CTA they saw.\nThis business question turns out to be a nice way to illustrate several core ideas from classical frequentist statistics. Using simulated data, I will walk through estimation, uncertainty, the Law of Large Numbers, the bootstrap, the Central Limit Theorem, hypothesis testing, and one practical pitfall that often shows up in real experiments: peeking too early."
+  },
+  {
+    "objectID": "posts/hw1/index.html#introduction",
+    "href": "posts/hw1/index.html#introduction",
+    "title": "A/B Testing a Call to Action",
+    "section": "",
+    "text": "Suppose I run a website with a landing page that invites visitors to join an email newsletter. The page has a prominent call to action, and I want to know whether slightly different wording changes how often visitors actually sign up.\nFor this post I will compare two versions of that CTA. Version A says Sign up for our newsletter here!, while version B says Stay up to date by signing up!. An A/B test assigns visitors at random to see one of the two messages, then compares the sign-up rates across groups. That random assignment is what makes the comparison meaningful: in expectation, the two groups differ only in the CTA they saw.\nThis business question turns out to be a nice way to illustrate several core ideas from classical frequentist statistics. Using simulated data, I will walk through estimation, uncertainty, the Law of Large Numbers, the bootstrap, the Central Limit Theorem, hypothesis testing, and one practical pitfall that often shows up in real experiments: peeking too early."
+  },
+  {
+    "objectID": "posts/hw1/index.html#the-ab-test-as-a-statistical-problem",
+    "href": "posts/hw1/index.html#the-ab-test-as-a-statistical-problem",
+    "title": "A/B Testing a Call to Action",
+    "section": "The A/B Test as a Statistical Problem",
+    "text": "The A/B Test as a Statistical Problem\nFor each visitor, the outcome is binary: either they sign up for the newsletter or they do not. That makes a Bernoulli model a natural starting point. If a visitor sees CTA A, let their sign-up probability be \\(\\pi_A\\); if they see CTA B, let it be \\(\\pi_B\\).\nThe parameter I care about is the difference in conversion rates:\n\\[\n\\theta = \\pi_A - \\pi_B\n\\]\nIf \\(\\theta &gt; 0\\), CTA A performs better. If \\(\\theta &lt; 0\\), CTA B performs better. If \\(\\theta = 0\\), then the two messages are equally effective.\nIn practice I do not observe \\(\\pi_A\\) and \\(\\pi_B\\) directly. I only see sample outcomes, so I estimate the difference using the difference in sample means:\n\\[\n\\hat\\theta = \\bar{X}_A - \\bar{X}_B\n\\]\nBecause each observation is either 0 or 1, each sample mean is just a sample proportion. In other words, \\(\\bar{X}_A = \\hat\\pi_A\\) and \\(\\bar{X}_B = \\hat\\pi_B\\). This is one reason A/B tests are so intuitive: the estimator is simply the observed gap in conversion rates."
+  },
+  {
+    "objectID": "posts/hw1/index.html#simulating-data",
+    "href": "posts/hw1/index.html#simulating-data",
+    "title": "A/B Testing a Call to Action",
+    "section": "Simulating Data",
+    "text": "Simulating Data\nIn a real experiment I would not know the true conversion rates ahead of time. For a simulation exercise, though, setting the truth ourselves is exactly the point because it lets us evaluate how well our methods recover the answer. I will assume that CTA A has a true sign-up probability of 22.0% and CTA B has a true sign-up probability of 18.0%, so the true treatment effect is 0.040.\nThe code below simulates 1,000 Bernoulli outcomes for each CTA:\n\ndemo_pi_A &lt;- 0.22\ndemo_pi_B &lt;- 0.18\ndemo_n &lt;- 1000\n\ndemo_cta_a &lt;- rbinom(demo_n, size = 1, prob = demo_pi_A)\ndemo_cta_b &lt;- rbinom(demo_n, size = 1, prob = demo_pi_B)\n\nIn this particular simulated sample, CTA A generated 225 sign-ups out of 1000 visitors, while CTA B generated 182 sign-ups. The observed difference in sign-up rates is 0.043, which is close to the true effect of 0.040.\n\n\n\n\n\n\n\n\nObserved Outcomes in the Simulated Experiment\n\n\nEach CTA is shown to 1,000 visitors\n\n\nCTA\nVisitors\nSign-Ups\nObserved Sign-Up Rate\n\n\n\n\nCTA A\n1,000\n225\n22.5%\n\n\nCTA B\n1,000\n182\n18.2%\n\n\n\nTrue difference in sign-up rates: 0.040. Observed difference: 0.043."
+  },
+  {
+    "objectID": "posts/hw1/index.html#the-law-of-large-numbers",
+    "href": "posts/hw1/index.html#the-law-of-large-numbers",
+    "title": "A/B Testing a Call to Action",
+    "section": "The Law of Large Numbers",
+    "text": "The Law of Large Numbers\nThe Law of Large Numbers says that as the sample size grows, the sample mean converges to the population mean. In the A/B testing setting, that matters because \\(\\hat\\theta = \\bar{X}_A - \\bar{X}_B\\) is built from sample averages. If we observe enough visitors, we should expect our estimate to stabilize near the true treatment effect.\nTo make that idea concrete, I pair the simulated A and B observations, compute the element-wise differences, and then track the running mean of those differences from 1 observation up through all 1,000 observations.\n\npaired_diff &lt;- cta_a - cta_b\n\nlln_df &lt;- tibble(\n  n = 1:n_visitors,\n  running_mean = cumsum(paired_diff) / n\n)\n\n\n\n\n\n\n\n\n\n\nAt the beginning of the plot, each new observation can move the estimate quite a bit. That is what sampling noise looks like when the sample is tiny. Later on, the line smooths out and stays much closer to the truth. By the end of the sample, the running estimate is 0.043, which is very close to the true difference of 0.040.\nThe main takeaway is not that the estimate becomes perfect, but that it becomes reliable. The Law of Large Numbers gives us a reason to trust large samples more than small ones."
+  },
+  {
+    "objectID": "posts/hw1/index.html#bootstrap-standard-errors",
+    "href": "posts/hw1/index.html#bootstrap-standard-errors",
+    "title": "A/B Testing a Call to Action",
+    "section": "Bootstrap Standard Errors",
+    "text": "Bootstrap Standard Errors\nA point estimate tells me where the effect appears to be, but not how uncertain that estimate is. To quantify precision, I need a standard error. The bootstrap offers a practical way to get one: repeatedly resample from the observed data with replacement, recompute the statistic each time, and then look at how much those resampled estimates vary.\nIn this case, each bootstrap replication draws 1,000 outcomes with replacement from CTA A and 1,000 outcomes with replacement from CTA B, then computes a new difference in means \\(\\hat\\theta^*\\). Repeating that process many times gives an empirical approximation to the sampling variability of \\(\\hat\\theta\\).\n\n\nShow bootstrap code\nset.seed(496)\n\nboot_estimates &lt;- replicate(\n  1000,\n  mean(sample(cta_a, replace = TRUE)) - mean(sample(cta_b, replace = TRUE))\n)\n\nboot_se &lt;- sd(boot_estimates)\nci_bounds &lt;- theta_hat + c(-1.96, 1.96) * boot_se\n\n\nFor comparison, the analytical standard error for two independent Bernoulli samples is\n\\[\nSE(\\hat\\theta) = \\sqrt{\\frac{\\hat\\pi_A(1 - \\hat\\pi_A)}{n_A} + \\frac{\\hat\\pi_B(1 - \\hat\\pi_B)}{n_B}}\n\\]\nUsing the observed sample proportions, the analytical standard error is 0.0180. The bootstrap standard error is 0.0180, which is very close. That is exactly what I would hope to see: the bootstrap is recovering essentially the same uncertainty estimate as the closed-form formula.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUncertainty Around the Estimated Treatment Effect\n\n\nQuantity\nValue\n\n\n\n\nObserved estimate\n0.0430\n\n\nBootstrap standard error\n0.0180\n\n\nAnalytical standard error\n0.0180\n\n\n95% CI lower bound\n0.0076\n\n\n95% CI upper bound\n0.0784\n\n\n\n\n\n\n\nUsing the bootstrap standard error, the resulting 95% confidence interval is [0.008, 0.078]. A careful frequentist interpretation is that if I were to repeat this full experiment many times and construct intervals the same way each time, about 95% of those intervals would cover the true effect. In this sample, the interval suggests that values near zero are less plausible than a modest positive lift for CTA A."
+  },
+  {
+    "objectID": "posts/hw1/index.html#the-central-limit-theorem",
+    "href": "posts/hw1/index.html#the-central-limit-theorem",
+    "title": "A/B Testing a Call to Action",
+    "section": "The Central Limit Theorem",
+    "text": "The Central Limit Theorem\nThe Central Limit Theorem says that the sampling distribution of the sample mean becomes approximately Normal as the sample size grows, even when the underlying data are not Normal. That matters here because our outcomes are Bernoulli, not bell-shaped. Even so, the difference in sample means can still behave approximately like a Normal random variable once the sample is large enough.\nTo show that visually, I simulate the estimator \\(\\hat\\theta\\) 1,000 times for each of four sample sizes: 25, 50, 100, and 500 visitors per group.\n\n\n\n\n\n\n\n\n\nAt n = 25, the histogram is jagged and clearly affected by discreteness. By n = 100, the shape is already noticeably smoother. At n = 500, the distribution looks much more symmetric and bell-shaped around the true effect. That is the CLT in action: even though individual observations are only zeros and ones, the estimator behaves increasingly like a Normal random variable as the sample size increases."
+  },
+  {
+    "objectID": "posts/hw1/index.html#hypothesis-testing",
+    "href": "posts/hw1/index.html#hypothesis-testing",
+    "title": "A/B Testing a Call to Action",
+    "section": "Hypothesis Testing",
+    "text": "Hypothesis Testing\nOnce the CLT tells me that \\(\\hat\\theta\\) is approximately Normal in large samples, I can use that fact to perform a hypothesis test. The null hypothesis is\n\\[\nH_0: \\theta = 0\n\\]\nand the alternative is\n\\[\nH_1: \\theta \\neq 0\n\\]\nThe question is whether the observed data are surprising enough under the null that I am willing to reject it.\nTo answer that, I standardize the estimate:\n\\[\nz = \\frac{\\hat\\theta - 0}{SE(\\hat\\theta)}\n\\]\nThe logic works step by step:\n\nBy the CLT, \\(\\hat\\theta\\) is approximately Normal when the sample is large.\nUnder the null, that distribution is centered at 0.\nDividing by the standard error converts the statistic to something that is approximately standard Normal, which lets me compute a p-value.\n\nThis procedure is often described informally as a two-sample t-test, but in this Bernoulli setting it is more accurate to think of it as a large-sample z-test. The classical t-distribution result relies on Normal outcomes and estimated variance. Here the outcomes are not Normal, so the CLT is doing the heavy lifting.\n\n\n\n\n\n\n\n\nHypothesis Test for Equal Sign-Up Rates\n\n\nStatistic\nValue\n\n\n\n\nEstimated effect\n0.0430\n\n\nStandard error\n0.0180\n\n\nz-statistic\n2.3917\n\n\nTwo-sided p-value\n0.0168\n\n\n\n\n\n\n\nFor this simulated experiment, the test statistic is 2.392 and the p-value is 0.017. Because the p-value is below 0.05, I would reject the null of equal conversion rates at the 5% significance level. In plain language, this sample provides evidence that CTA A outperforms CTA B, with an estimated lift of about 4.3% in sign-up probability."
+  },
+  {
+    "objectID": "posts/hw1/index.html#the-t-test-as-a-regression",
+    "href": "posts/hw1/index.html#the-t-test-as-a-regression",
+    "title": "A/B Testing a Call to Action",
+    "section": "The T-Test as a Regression",
+    "text": "The T-Test as a Regression\nThe same comparison can be written as a simple linear regression. Stack the two groups into one dataset, define \\(Y_i\\) as the sign-up indicator, and let \\(D_i = 1\\) if visitor \\(i\\) saw CTA A and \\(D_i = 0\\) if they saw CTA B. Then estimate\n\\[\nY_i = \\beta_0 + \\beta_1 D_i + \\varepsilon_i\n\\]\nThis model is easy to interpret:\n\n\\(\\beta_0\\) is the mean outcome for CTA B.\n\\(\\beta_0 + \\beta_1\\) is the mean outcome for CTA A.\nTherefore \\(\\beta_1\\) is the difference in means, which is exactly the treatment effect \\(\\theta\\).\n\n\n\n\n\n\n\n\n\nThe A/B Test and the Regression Tell the Same Story\n\n\nMethod\nEstimate\nStd. Error\nTest Statistic\np-value\n\n\n\n\nTwo-sample z approach\n0.0430\n0.0180\n2.3917\n0.0168\n\n\nOLS regression\n0.0430\n0.0180\n2.3905\n0.0169\n\n\n\n\n\n\n\nAs expected, the coefficient estimate from the regression is numerically identical to the difference in sample means. The standard errors are not exactly the same because the simple regression uses the usual homoskedastic OLS formula, while the earlier calculation used the separate-variance Bernoulli expression. Even so, the two approaches produce nearly identical inference in this balanced experiment.\nThis equivalence matters because regression scales naturally. Once the A/B test is written in regression form, it becomes easy to add controls, interactions, fixed effects, or multiple treatment arms without changing the underlying logic."
+  },
+  {
+    "objectID": "posts/hw1/index.html#the-problem-with-peeking",
+    "href": "posts/hw1/index.html#the-problem-with-peeking",
+    "title": "A/B Testing a Call to Action",
+    "section": "The Problem with Peeking",
+    "text": "The Problem with Peeking\nThe last issue is operational rather than mathematical. Imagine an impatient manager who wants to check results after every 100 visitors per group and stop the experiment the first time the p-value falls below 0.05. That sounds efficient, but under classical frequentist inference it quietly changes the error rate.\nA single pre-registered hypothesis test at the 5% level has a 5% false positive rate under the null. But if I test the same experiment repeatedly as the data accumulate, every interim look is another chance to get lucky noise. The overall probability of at least one false rejection can rise far above 5%.\nTo demonstrate that, I simulate a world where there is no treatment effect at all: \\(\\pi_A = \\pi_B = 0.20\\). For each experiment, I run the z-test after 100, 200, 300, …, 1,000 visitors per group and record whether any of those 10 peeks is significant. I then repeat that whole process 10,000 times.\n\n\nShow peeking simulation code\npeek_once &lt;- function(n_total = 1000, p = 0.20, alpha = 0.05, step = 100) {\n  a &lt;- rbinom(n_total, 1, p)\n  b &lt;- rbinom(n_total, 1, p)\n  checkpoints &lt;- seq(step, n_total, by = step)\n\n  p_values &lt;- vapply(\n    checkpoints,\n    function(n) {\n      p_a &lt;- mean(a[1:n])\n      p_b &lt;- mean(b[1:n])\n      theta_n &lt;- p_a - p_b\n      se_n &lt;- sqrt(p_a * (1 - p_a) / n + p_b * (1 - p_b) / n)\n\n      if (se_n == 0) {\n        return(1)\n      }\n\n      z_n &lt;- theta_n / se_n\n      2 * pnorm(abs(z_n), lower.tail = FALSE)\n    },\n    numeric(1)\n  )\n\n  any(p_values &lt; alpha)\n}\n\nset.seed(497)\npeek_results &lt;- replicate(10000, peek_once())\nfalse_positive_rate &lt;- mean(peek_results)\n\n\n\n\n\n\n\n\n\n\n\nIn this simulation, the empirical false positive rate rises to 19.7%, far above the nominal 5% rate of a single planned test. That is the practical problem with peeking: even when there is no real difference between the CTAs, repeated looks at the data make it much easier to convince yourself that you have found a winner.\nFor real A/B testing, the lesson is simple. If I want valid classical inference, I should commit in advance to a sample size or use a formal sequential-testing framework designed for interim looks. Otherwise, the p-values stop meaning what I think they mean."
+  },
+  {
+    "objectID": "posts/hw1/index.html#conclusion",
+    "href": "posts/hw1/index.html#conclusion",
+    "title": "A/B Testing a Call to Action",
+    "section": "Conclusion",
+    "text": "Conclusion\nThis simple CTA experiment shows how a familiar product question maps directly onto the main tools of classical frequentist statistics. The difference in sign-up rates gives a natural estimator, the Law of Large Numbers explains why it stabilizes, the bootstrap and analytical formulas quantify uncertainty, the Central Limit Theorem supports large-sample inference, and regression provides an equivalent and more flexible way to estimate the same effect.\nJust as importantly, the peeking example shows that good statistical practice is not only about formulas. Experimental design decisions shape what our p-values and confidence intervals actually mean. In that sense, A/B testing is not just a technical exercise in comparing two buttons or two phrases. It is a disciplined way of learning from data while being honest about uncertainty."
+  },
+  {
+    "objectID": "projects/project2/index.html",
+    "href": "projects/project2/index.html",
+    "title": "Portfolio Site Refresh",
+    "section": "",
+    "text": "This project tracks the ongoing refresh of my Quarto website. The main goal is to turn a basic class site into something that feels more intentional: easier to navigate, more visually consistent, and better organized around posts, projects, and coursework."
+  },
+  {
+    "objectID": "projects/project2/index.html#current-focus",
+    "href": "projects/project2/index.html#current-focus",
+    "title": "Portfolio Site Refresh",
+    "section": "Current Focus",
+    "text": "Current Focus\n\nAdd a dedicated Posts section for polished homework articles and analysis write-ups.\nImprove the Projects page so each card feels complete and informative.\nRefine the site’s colors, spacing, and typography so the overall experience feels more professional."
+  },
+  {
+    "objectID": "projects/project2/index.html#why-it-matters",
+    "href": "projects/project2/index.html#why-it-matters",
+    "title": "Portfolio Site Refresh",
+    "section": "Why It Matters",
+    "text": "Why It Matters\nBuilding the website is also part of the assignment experience. A clear and attractive structure makes it easier for readers to understand the work, and it gives me a better place to keep improving my projects over time."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Kelun Wang",
+    "section": "",
+    "text": "I am a Business Analytics candidate at UC San Diego with a strong finance foundation from Peking University. My work sits at the intersection of business reasoning, technical implementation, and clear communication.\nThis site is a small portfolio of how I think and what I build. I use it to collect course writing, data analysis, and project work that I want to keep refining over time."
+  },
+  {
+    "objectID": "index.html#kelun-wang-in-a-nutshell",
+    "href": "index.html#kelun-wang-in-a-nutshell",
+    "title": "Kelun Wang",
+    "section": "Kelun Wang in a Nutshell",
+    "text": "Kelun Wang in a Nutshell\nMy career is defined by one realization: understanding the business “why” is only half the equation; you also need the technical capacity to engineer the “data how.” That mindset pushed me from traditional finance toward advanced analytics.\nI see myself as a translator between strategy and code. Whether optimizing algorithms at ByteDance or automating research pipelines for China Universal Securities, I focus on turning unstructured business ambiguity into structured solutions. I am especially interested in Data Scientist and Business Analyst roles where I can turn large datasets into clear, actionable intelligence."
+  },
+  {
+    "objectID": "index.html#what-youll-find-here",
+    "href": "index.html#what-youll-find-here",
+    "title": "Kelun Wang",
+    "section": "What You’ll Find Here",
+    "text": "What You’ll Find Here\n\nPosts collects polished write-ups like my A/B testing article on frequentist statistics.\nProjects highlights coursework, experiments, and ongoing website development.\nResume keeps my academic background and professional experience in one place."
+  },
+  {
+    "objectID": "index.html#why-this-site-exists",
+    "href": "index.html#why-this-site-exists",
+    "title": "Kelun Wang",
+    "section": "Why This Site Exists",
+    "text": "Why This Site Exists\nI believe strongly in the value of open knowledge. Just as the data science community and my experience at UC San Diego have accelerated my own growth, I want this site to be a place where my work is visible, reusable, and continuously improving. If something here is useful to you, or if you would like to connect, feel free to reach out through the links above."
+  }
+]

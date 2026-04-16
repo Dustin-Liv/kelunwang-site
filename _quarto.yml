@@ -1,0 +1,29 @@
+project:
+  type: website
+  output-dir: docs  # <-- add this
+
+
+website:
+  title: "Kelun Wang"
+  search: false
+  navbar:
+    left:
+      - href: index.qmd
+        text: About
+      - href: resume.qmd
+        text: Resume
+      - href: posts.qmd
+        text: Posts
+      - href: projects.qmd
+        text: Projects
+  page-footer:
+    center: "MGTA 495 portfolio built with Quarto"
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    css: styles.css
+    toc: true
+

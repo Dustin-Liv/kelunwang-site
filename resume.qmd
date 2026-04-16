@@ -1,0 +1,18 @@
+---
+title: "Resume"
+---
+
+::: {.resume-page}
+::: {.page-intro}
+A one-page snapshot of my background, experience, and current coursework. You can view the PDF here, open it in a new tab, or download a copy.
+:::
+
+::: {.resume-actions}
+[Open PDF](files/resume.pdf){.resume-button target="_blank"}
+[Download Resume](files/resume.pdf){.resume-button .resume-button-secondary download="Kelun_Wang_Resume.pdf"}
+:::
+
+::: {.resume-shell}
+{{< pdf files/resume.pdf width=100% height=1180 class="resume-viewer" >}}
+:::
+:::

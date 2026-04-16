@@ -1,0 +1,34 @@
+---
+title: "Kelun Wang"
+image: "files/profile_pic.jpg"
+about:
+  template: jolla
+  links:
+    - icon: envelope
+      href: mailto:kelun0925@gmail.com
+    - icon: linkedin
+      href: https://www.linkedin.com/in/kelunwang
+format:
+  html:
+    toc: false
+---
+
+I am a Business Analytics candidate at UC San Diego with a strong finance foundation from Peking University. My work sits at the intersection of business reasoning, technical implementation, and clear communication.
+
+This site is a small portfolio of how I think and what I build. I use it to collect course writing, data analysis, and project work that I want to keep refining over time.
+
+## Kelun Wang in a Nutshell
+
+My career is defined by one realization: understanding the business "why" is only half the equation; you also need the technical capacity to engineer the "data how." That mindset pushed me from traditional finance toward advanced analytics.
+
+I see myself as a translator between strategy and code. Whether optimizing algorithms at ByteDance or automating research pipelines for China Universal Securities, I focus on turning unstructured business ambiguity into structured solutions. I am especially interested in Data Scientist and Business Analyst roles where I can turn large datasets into clear, actionable intelligence.
+
+## What You'll Find Here
+
+- `Posts` collects polished write-ups like my A/B testing article on frequentist statistics.
+- `Projects` highlights coursework, experiments, and ongoing website development.
+- `Resume` keeps my academic background and professional experience in one place.
+
+## Why This Site Exists
+
+I believe strongly in the value of open knowledge. Just as the data science community and my experience at UC San Diego have accelerated my own growth, I want this site to be a place where my work is visible, reusable, and continuously improving. If something here is useful to you, or if you would like to connect, feel free to reach out through the links above.

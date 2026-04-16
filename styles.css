@@ -1,0 +1,394 @@
+/* Custom theme for MGTA 495 Quarto site */
+
+:root {
+  --brand-ink: #1f2a44;
+  --brand-copy: #46536b;
+  --brand-soft: #718096;
+  --brand-accent: #0f766e;
+  --brand-highlight: #f59e0b;
+  --brand-bg: #f7f4ea;
+  --card-bg: rgba(255, 255, 255, 0.84);
+  --card-border: rgba(31, 42, 68, 0.1);
+  --shadow-soft: 0 22px 55px rgba(31, 42, 68, 0.12);
+  --shadow-hover: 0 28px 70px rgba(31, 42, 68, 0.16);
+  --radius-lg: 28px;
+  --radius-md: 20px;
+  --page-width: 1120px;
+}
+
+body {
+  font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(245, 158, 11, 0.14), transparent 24%),
+    radial-gradient(circle at top right, rgba(15, 118, 110, 0.12), transparent 28%),
+    linear-gradient(180deg, #fcfbf7 0%, var(--brand-bg) 100%);
+  color: var(--brand-ink);
+}
+
+.navbar {
+  background: linear-gradient(90deg, #15314b 0%, #234f66 100%) !important;
+  box-shadow: 0 10px 30px rgba(21, 49, 75, 0.18);
+  backdrop-filter: blur(12px);
+}
+
+.navbar-brand,
+.navbar .nav-link,
+.navbar .quarto-navbar-tools {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.navbar .nav-link {
+  position: relative;
+}
+
+.navbar .nav-link.active::after {
+  content: "";
+  position: absolute;
+  left: 0.85rem;
+  right: 0.85rem;
+  bottom: 0.55rem;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+main.content {
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: 3rem 1.25rem 5rem 1.25rem;
+}
+
+.quarto-title-block {
+  margin-bottom: 1.5rem;
+}
+
+h1,
+h2,
+h3,
+.title {
+  color: var(--brand-ink);
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+  letter-spacing: -0.02em;
+}
+
+.title {
+  font-size: clamp(2.6rem, 4vw, 4.2rem);
+}
+
+p,
+li {
+  color: var(--brand-copy);
+}
+
+.about-contents p,
+main.content p,
+main.content li {
+  font-size: 1.08rem;
+  line-height: 1.75;
+}
+
+.quarto-about-jolla {
+  max-width: 980px;
+  margin: 3.5rem auto 2rem auto;
+  padding: 2.5rem;
+  border-radius: 28px;
+  background: var(--card-bg);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(10px);
+}
+
+.quarto-about-jolla .about-image {
+  border: 6px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 18px 40px rgba(31, 42, 68, 0.18);
+}
+
+.quarto-about-jolla .about-contents {
+  max-width: 38rem;
+}
+
+.about-links .about-link {
+  background: white;
+  color: var(--brand-accent);
+  border: 1px solid rgba(15, 118, 110, 0.16);
+  border-radius: 999px;
+  padding: 0.65rem 1rem;
+  margin-right: 0.5rem;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.about-links .about-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(15, 118, 110, 0.15);
+}
+
+.page-intro {
+  max-width: 760px;
+  margin: 0 0 2rem 0;
+  padding: 1rem 1.2rem;
+  border-left: 4px solid var(--brand-accent);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.68);
+  box-shadow: 0 10px 28px rgba(31, 42, 68, 0.08);
+}
+
+.resume-page {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.resume-actions {
+  display: flex;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  margin: 0 0 1.25rem 0;
+}
+
+.resume-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1.05rem;
+  border-radius: 999px;
+  background: var(--brand-accent);
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 10px 22px rgba(15, 118, 110, 0.2);
+}
+
+.resume-button:hover {
+  color: white;
+  background: #0b5f59;
+}
+
+.resume-button-secondary {
+  background: white;
+  color: var(--brand-ink);
+  border: 1px solid rgba(31, 42, 68, 0.12);
+  box-shadow: none;
+}
+
+.resume-button-secondary:hover {
+  color: var(--brand-ink);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.resume-shell {
+  padding: 1rem;
+  border-radius: 28px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow-soft);
+}
+
+.resume-shell p {
+  margin: 0;
+}
+
+.resume-viewer {
+  display: block;
+  width: 100%;
+  min-height: 1180px;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(180deg, #e9eef3 0%, #dce5ec 100%);
+}
+
+.quarto-listing-container-default {
+  max-width: 920px;
+}
+
+.quarto-listing-container-default .quarto-post {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 1.4rem 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.quarto-listing-container-default .quarto-post:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.quarto-listing-container-default .body {
+  flex: 1 1 auto;
+}
+
+.quarto-listing-container-default .listing-title {
+  margin-bottom: 0.3rem;
+  font-size: 1.55rem;
+}
+
+.quarto-listing-container-default .listing-subtitle,
+.quarto-listing-container-default .listing-description {
+  color: var(--brand-copy);
+}
+
+.quarto-listing-container-default .metadata {
+  flex: 0 0 auto;
+}
+
+.quarto-listing-container-default .listing-date {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(15, 118, 110, 0.1);
+  color: var(--brand-accent);
+  font-weight: 700;
+}
+
+.quarto-listing-container-grid {
+  max-width: 980px;
+}
+
+.quarto-listing-container-grid .list.grid {
+  gap: 1.5rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.quarto-grid-item.card,
+.content .cell,
+.content .quarto-figure {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+
+.quarto-grid-item.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.quarto-grid-item.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.quarto-grid-item .card-img-top {
+  background: linear-gradient(135deg, rgba(21, 49, 75, 0.12), rgba(15, 118, 110, 0.08));
+}
+
+.quarto-grid-item .card-img {
+  object-fit: cover;
+}
+
+.listing-item-img-placeholder {
+  position: relative;
+  background:
+    linear-gradient(135deg, rgba(21, 49, 75, 0.16), rgba(15, 118, 110, 0.12)),
+    linear-gradient(180deg, #ebf0f5 0%, #dfe7ef 100%);
+}
+
+.listing-item-img-placeholder::before {
+  content: "Preview Coming Soon";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: rgba(31, 42, 68, 0.72);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.quarto-grid-item .card-body {
+  padding: 1.25rem 1.35rem 1.35rem 1.35rem;
+}
+
+.quarto-grid-item .card-title {
+  font-size: 1.45rem;
+  margin-bottom: 0.45rem;
+}
+
+.listing-description {
+  color: var(--brand-copy);
+}
+
+.card-attribution {
+  margin-top: 1rem;
+  color: var(--brand-soft);
+  font-weight: 600;
+}
+
+.quarto-title-banner,
+.quarto-title-block {
+  margin-bottom: 1rem;
+}
+
+.page-footer {
+  border-top: 1px solid rgba(31, 42, 68, 0.08);
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(8px);
+}
+
+a {
+  color: var(--brand-accent);
+}
+
+a:hover {
+  color: #0b5f59;
+}
+
+details.code-fold {
+  margin: 1rem 0;
+  border: 1px solid rgba(31, 42, 68, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.75);
+  overflow: hidden;
+}
+
+details.code-fold summary {
+  padding: 0.9rem 1rem;
+  font-weight: 700;
+  color: var(--brand-accent);
+  cursor: pointer;
+}
+
+details.code-fold[open] summary {
+  border-bottom: 1px solid rgba(31, 42, 68, 0.08);
+}
+
+@media (max-width: 900px) {
+  .quarto-listing-container-default .quarto-post {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .quarto-listing-container-grid .list.grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  main.content {
+    padding: 2rem 1rem 4rem 1rem;
+  }
+
+  .quarto-about-jolla {
+    margin: 2rem 1rem;
+    padding: 1.6rem;
+  }
+
+  .title {
+    font-size: 2.4rem;
+  }
+
+  .resume-shell {
+    padding: 0.7rem;
+  }
+
+  .resume-viewer {
+    min-height: 760px;
+  }
+}
