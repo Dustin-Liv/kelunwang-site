@@ -231,6 +231,8 @@ nj_change <- table3_replication |>
 
 nj_coef <- unname(coef(model_1)[["state"]])
 nj_coef_se <- unname(model_1_summary["state", "Std. Error"])
+nj_wave2_fte    <- nj_wave1_fte + nj_change          # actual NJ wave-2 mean
+nj_counterfactual_fte <- nj_wave1_fte + pa_change    # NJ if it had followed PA's trend
 
 plot_labels <- plot_df |>
   group_by(state_name) |>
@@ -390,6 +392,28 @@ ggplot(plot_df, aes(x = period, y = fte, group = state_name, colour = state_name
     y = "Average FTE employment",
     colour = NULL,
     caption = "Shaded region marks the post-policy period. FTE counts each part-time worker as 0.5."
+  ) +
+  # dashed counterfactual line for NJ
+  annotate(
+    "segment",
+    x = 1, xend = 2,
+    y = nj_wave1_fte, yend = nj_counterfactual_fte,
+    colour = "#0f766e", linetype = "dashed", linewidth = 0.9, alpha = 0.5
+  ) +
+  # double-headed arrow marking the DiD gap
+  annotate(
+    "segment",
+    x = 2.05, xend = 2.05,
+    y = nj_counterfactual_fte, yend = nj_wave2_fte,
+    colour = "#6d28d9", linewidth = 1.0,
+    arrow = arrow(ends = "both", length = unit(0.08, "inches"), type = "closed")
+  ) +
+  # DiD label
+  annotate(
+    "text",
+    x = 2.12, y = (nj_wave2_fte + nj_counterfactual_fte) / 2,
+    label = paste0("DiD ≈ +", fmt_num(did_value, 2)),
+    colour = "#6d28d9", size = 3.5, hjust = 0
   ) +
   theme(
     plot.margin = margin(10, 70, 10, 10)
